@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catch the Ball Game</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .controls {
+            margin-bottom: 20px;
+        }
+
+        .controls select,
+        .controls button {
+            padding: 10px;
+            font-size: 1rem;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .score {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        canvas {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Catch the Ball Game</h1>
+        <div class="controls">
+            <label for="difficulty">Difficulty:</label>
+            <select id="difficulty" onchange="setDifficulty()">
+                <option value="easy">Easy</option>
+                <option value="normal" selected>Normal</option>
+                <option value="hard">Hard</option>
+                <option value="very-hard">Very Hard</option>
+            </select>
+            <button onclick="startGame()">Start Game</button>
+        </div>
+        <div class="score" id="score">Score: 0</div>
+    </header>
+    <canvas id="gameCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = window.innerWidth * 0.8;
+        canvas.height = window.innerHeight * 0.6;
+
+        const basket = {
+            width: 100,
+            height: 20,
+            x: canvas.width / 2 - 50,
+            y: canvas.height - 40,
+            dx: 20
+        };
+
+        const ball = {
+            radius: 15,
+            x: Math.random() * canvas.width,
+            y: 0,
+            dy: 4
+        };
+
+        let score = 0;
+        let difficulty = "normal";
+        let isGameRunning = false;
+        const ballSpeed = {
+            easy: 2,
+            normal: 4,
+            hard: 6,
+            veryHard: 8
+        };
+
+        function drawBasket() {
+            ctx.fillStyle = "#4CAF50";
+            ctx.fillRect(basket.x, basket.y, basket.width, basket.height);
+        }
+
+        function drawBall() {
+            ctx.beginPath();
+            ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+            ctx.fillStyle = "#FF5733";
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function updateBall() {
+            if (!isGameRunning) return;
+
+            ball.y += ball.dy;
+            if (ball.y - ball.radius > canvas.height) {
+                resetBall();
+            }
+
+            if (
+                ball.y + ball.radius >= basket.y &&
+                ball.x >= basket.x &&
+                ball.x <= basket.x + basket.width
+            ) {
+                score++;
+                document.getElementById("score").innerText = `Score: ${score}`;
+                resetBall();
+            }
+        }
+
+        function resetBall() {
+            ball.x = Math.random() * canvas.width;
+            ball.y = 0;
+            ball.dy = ballSpeed[difficulty];
+        }
+
+        function moveBasket(event) {
+            if (!isGameRunning) return;
+
+            if (event.key === "ArrowLeft" && basket.x > 0) {
+                basket.x -= basket.dx;
+            }
+            if (event.key === "ArrowRight" && basket.x + basket.width < canvas.width) {
+                basket.x += basket.dx;
+            }
+        }
+
+        function setDifficulty() {
+            const level = document.getElementById("difficulty").value;
+            switch (level) {
+                case "easy":
+                    difficulty = "easy";
+                    break;
+                case "normal":
+                    difficulty = "normal";
+                    break;
+                case "hard":
+                    difficulty = "hard";
+                    break;
+                case "very-hard":
+                    difficulty = "veryHard";
+                    break;
+            }
+            if (isGameRunning) resetBall();
+        }
+
+        function startGame() {
+            score = 0;
+            isGameRunning = true;
+            document.getElementById("score").innerText = `Score: ${score}`;
+            basket.x = canvas.width / 2 - basket.width / 2;
+            resetBall();
+        }
+
+        function gameLoop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawBasket();
+            drawBall();
+            updateBall();
+            requestAnimationFrame(gameLoop);
+        }
+
+        document.addEventListener("keydown", moveBasket);
+
+        gameLoop();
+    </script>
+</body>
+</html>
