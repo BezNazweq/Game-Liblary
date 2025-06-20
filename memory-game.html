@@ -13,11 +13,12 @@
         <header>
             <h1>Memory Game</h1>
             <div class="game-controls">
-                <label for="difficulty">Difficulty:</label>                <select id="difficulty" onchange="setDifficultyAndRestart()" class="styled-select">
+                <label for="difficulty">Difficulty:</label>                
+                <select id="difficulty" onchange="setDifficultyAndRestart()" class="styled-select">
                     <option value="easy">Easy (4x2)</option>
                     <option value="normal" selected>Normal (4x4)</option>
                     <option value="hard">Hard (6x4)</option>
-                    <option value="very-hard">Very Hard (8x4)</option>
+                    <option value="very-hard">Very Hard (8x4)</option>                
                 </select>
                 <a href="index.html" class="btn">Back to Menu</a>
             </div>
@@ -25,7 +26,6 @@
         <main>
             <div class="grid" id="gameGrid" aria-label="Game area"></div>        
         </main>
-        <a style="text-align:center; margin-top:20px;" href="index.html" class="btn btn-secondary">Back to menu</a>
     </div>
     <script src="scripts/memory-game.js"></script>
 </body>
