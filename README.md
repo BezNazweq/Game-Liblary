@@ -1,4 +1,4 @@
-# Game-Liblary
+# Game Liblary
 
-Game Liblary is a website where u can play some games.
-Now my game have two games -catch the ball and -memory game but i will add more games in future updates.
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](https://github.com/XaromPL/Game-Liblary/blob/main/LICENSE)
+[![Last commit](https://img.shields.io/github/last-commit/XaromPL/Game-Liblary?style=for-the-badge)](https://github.com/XaromPL/Game-Liblary/commits)
