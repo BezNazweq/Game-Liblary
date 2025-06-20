@@ -24,8 +24,6 @@
 
 **4. Math Quiz:** Test your mathematical skills with random arithmetic operations. Choose from easy, normal, or hard difficulty levels.
 
-![Game Menu](screenshots/game-menu.png)
-
 <div align="center">
   
 ## **3. Features & Implementation**
