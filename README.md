@@ -53,20 +53,6 @@
 
 * **DOM Manipulation:** Dynamic creation and updates of game elements.
 
-## Game Screenshots
-
-### Catch the Ball
-![Catch the Ball](screenshots/catch-the-ball.png)
-
-### Memory Game
-![Memory Game](screenshots/memory-game.png)
-
-### Word Guess
-![Word Guess](screenshots/word-guess.png)
-
-### Math Quiz
-![Math Quiz](screenshots/math-quiz.png)
-
 ## Installation and Usage
 
 1. Clone this repository or download it as a ZIP file.
