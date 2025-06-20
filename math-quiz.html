@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Quiz</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/particles.css">
+    <link rel="stylesheet" href="styles/math-quiz.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Math Quiz</h1>
+            <div class="game-controls">                <label for="difficulty">Difficulty:</label>
+                <select id="difficulty" onchange="startGame()" class="styled-select">
+                    <option value="easy">Easy</option>
+                    <option value="normal" selected>Normal</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+        </header>
+        <main>
+            <div id="question" class="question"></div>            <div class="game-controls">
+                <input type="number" id="answerInput" autocomplete="off" placeholder="Your answer">
+                <button onclick="submitAnswer()" class="btn btn-primary">Submit</button>
+            </div>
+            <div id="feedback" class="feedback-message"></div>
+            <div id="score" class="score"></div>
+            <button onclick="startGame()" class="btn btn-success">Restart</button>
+            <a href="index.html" class="btn">Back to Menu</a>        </main>
+    </div>
+    <script src="scripts/math-quiz.js"></script>
+</body>
+</html>
